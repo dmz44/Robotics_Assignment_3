@@ -70,23 +70,25 @@ This manual is based on the following manual for humble.
 
 **Operating Physical Turtlebot 3 Arm**
 
-[Turtlebot Nvidia Jeston] [Remote PC] Make sure Jeston is connected to the small router we provided (small_blue_wifi), along with the remote PC. You should also sync the time for both the remote PC and the NVIDIA Jetson by going through Ubuntu settings. Refer to the end of the instruction for this procedure.
+This assumes that you have a working setup from Milestone Assignment 1 Part 1. Please execute all instructions with **[Remote PC]** on Docker shell. Note that you have to enable GUI and start the Docker container by following instruction from Milestone Assignment 1. Please execute all instructions with **[Turtlebot Nvidia Jetson]** on Turtlebot Jetson's native bash shell without Docker.
 
-[Turtlebot Nvidia Jeston] The following command will bring up the actual TurtleBot3 hardware with OpenMANIPULATOR-X on it. Open a terminal from the TurtleBot3 SBC. Bring up the TurtleBot3 Manipulation using the following command.
+**[Turtlebot Nvidia Jeston]** **[Remote PC]** Make sure Jeston is connected to the small router we provided (small_blue_wifi), along with the remote PC. You should also sync the time for both the remote PC and the NVIDIA Jetson by going through Ubuntu settings. Refer to the end of the instruction for this procedure.
+
+**[Turtlebot Nvidia Jeston]** The following command will bring up the actual TurtleBot3 hardware with OpenMANIPULATOR-X on it. Open a terminal from the TurtleBot3 SBC. Bring up the TurtleBot3 Manipulation using the following command.
 
 ```bash
 ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
 
 ```
 
-[Remote PC] Enter the command below to launch MoveIt on RViz. The arm should move when you move the blue ball on RViz and click “plan and execute”.
+**[Remote PC]** Enter the command below to launch MoveIt on RViz. The arm should move when you move the blue ball on RViz and click “plan and execute”.
 
 ```bash
 ros2 launch turtlebot3_manipulation_moveit_config moveit_core.launch.py
 
 ```
 
-[Remote PC] To operate the robot with the keyboard teleoperation node, the RViz must be terminated. Then launch the servo server node and teleoperation nodes on a separate terminal window.
+**[Remote PC]** To operate the robot with the keyboard teleoperation node, the RViz must be terminated. Then launch the servo server node and teleoperation nodes on a separate terminal window.
 
 ```bash
 ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
