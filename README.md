@@ -1,27 +1,37 @@
-# CS 7389K (2025): Advanced Robotics and Autonomous Systems
+# 2026 CS 4379K / CS 5342 Introduction to Autonomous Robotics, Robotics and Autonomous Systems
 
-## Programming Assignment: Milestone 3 (V1.0.0)
+## Programming Assignment: Milestone 3 (V1.0)
 
 **Minhyuk Park and Tsz-Chiu Au**
 
 ### Introduction
 
-Welcome to CS 7389K. We have prepared a few milestones before the final project, in which you will use a physical robot to execute a mission given by us. The following milestones will give you an idea of how to interact with ROBOTIS’ Turtlebot3 waffle Pi with a Manipulator Arm using the Robot Operating System 2.
+Welcome to CS 4379K / CS 5342. We have prepared a few milestones before the final project, during which you will use a physical robot to execute a mission we provide. The following milestones will give you an idea of how to interact with ROBOTIS’ Turtlebot3 waffle Pi with a Manipulator Arm using the Robot Operating System 2.
 
 The third milestone is about ROS 2 programming. In this milestone, you will try operating a physical robot arm and write a ROS 2 program to control the OpenManipulator on the Turtlebot using a keyboard. The program should be similar to `turtlebot3_teleop_key`, but it will accept a few more keystrokes to control the robot arm. Your program should provide some basic functions, such as setting the arm to some predefined poses and opening/closing the gripper. In addition, your program should read the current configuration of the arm and the gripper and display the information on the screen. Of course, please feel free to add more functionalities to your program.
 
-You might find the official tutorial on ROS2 Foxy useful in this course. [https://docs.ros.org/en/foxy/Tutorials.html](https://docs.ros.org/en/foxy/Tutorials.html)
+To do this, you will deploy our pre-configured Docker container that sets up all the software that is required for the assignment.
+Please refer to the following video for an explanation of what a Docker container environment is. 
+
+[https://www.youtube.com/watch?v=Gjnup-PuquQ](https://www.youtube.com/watch?v=Gjnup-PuquQ)
+
+Robot Operating System version is associated with Ubuntu Long-Term Support Versions (e.g. Ubuntu 22.04 with Humble). We are using **ROS 2 Humble in a Docker environment** for Remote-PC. You might find the official tutorial on ROS 2 Humble useful in this course:
+
+[https://docs.ros.org/en/humble/Tutorials.html](https://docs.ros.org/en/humble/Tutorials.html)
+
+For all questions regarding milestone assignments and the robot, **you should contact the Doctoral Instructor Assistant via direct message on Slack**. Please do not contact the Instructor with questions regarding the milestone assignments. This is the URL for Slack for this course. 
+
+<https://spring2026txstrobot.slack.com/>
+
+We use vim (vi) for text editing in a terminal environment. Please refer to the tutorial for Vim if you are not familiar with vim environment for editing documents. 
+<https://opensource.com/article/19/3/getting-started-vim>
 
 ### Assignment requirement
 
 A hardware video demonstration submission is required for Milestone Assignment 3. You need to demonstrate that you can program a ROS2 program to control the turlebot’s wheels and arms. Once your group is done with the video demonstration, please submit it on Canvas. Each group will submit one video and a zip file with your group name containing your source code. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Rules for robot usage will apply for working with the physical Turtlebot3. Please refer to the inventory list given to you separately.
 
 > **Major Changes**
-> * **v 0.9:** Initial Release
-> * **v 0.9.5:** Added ROS2 programming guide
-> * **v 1.0.0:** Added ROS2 control investigation section, overhauled programming guide to help students
-> 
-> 
+> * **v 1.0.0:** Initial Release, Added ROS2 control investigation section, overhauled programming guide to help students
 
 ---
 
