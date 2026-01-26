@@ -64,9 +64,8 @@ Rules for robot usage will apply for working with the physical Turtlebot3. Pleas
 > 
 > 
 
-This manual is based on the following manual for Foxy.
+This manual is based on the following manual for humble.
 
-* **(Wayback Machine)** [https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation](https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation)
 * **(Original URL)** [https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation](https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation)
 
 **Operating Physical Turtlebot 3 Arm**
@@ -188,7 +187,7 @@ In this part, you will run your program and demonstrate all of its features with
 
 **[Optional] Creating a Package for Coding in ROS2**
 
-Suggested Reading: [Create your own package] [https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html)
+Suggested Reading: [Create your own package] [https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html)
 
 While not strictly necessary for ROS2 (i.e., you can get away with `python3 yourscript.py`), you might want to create a ROS2 package to follow ROS2 conventions. Navigate to the src directory of your ROS2 workspace and create a new package. For NUC users, you need to create a new ROS2 workspace. Please refer to the suggested reading and initialize your ROS2 workspace first.
 
@@ -261,10 +260,10 @@ Please monitor the bringup terminal for errors or crashes, as they can give you 
 
 Largely speaking, there are three interfaces, publisher & subscriber, service & client, and action & action client, that you need to be aware of. Below are links to relevant tutorials. It is highly recommended that you read the tutorials from start to finish to get a comprehensive idea of the ROS2 ecosystem.
 
-* Suggested reading: [Publisher & Subscriber] Getting continuous sensor data or other continuous vehicle command: [https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html)
-* Suggested reading: [Action Server & Client] Commands that take time to complete for Arm and Gripper: [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Creating-an-Action.html](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Creating-an-Action.html) [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html)
+* Suggested reading: [Publisher & Subscriber] Getting continuous sensor data or other continuous vehicle command: [https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html)
+* Suggested reading: [Action Server & Client] Commands that take time to complete for Arm and Gripper: [https://docs.ros.org/en/humble/Tutorials/Intermediate/Creating-an-Action.html](https://docs.ros.org/en/humble/Tutorials/Intermediate/Creating-an-Action.html) [https://docs.ros.org/en/humble/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html](https://docs.ros.org/en/humble/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html)
 * Suggested reading: [rclpy] ROS Client Library for Python: [https://docs.ros.org/en/iron/p/rclpy/api.html](https://docs.ros.org/en/iron/p/rclpy/api.html)
-* Suggested reading: [Service and Client] Short, one-off command for tasks such as parameter updates: [https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html)
+* Suggested reading: [Service and Client] Short, one-off command for tasks such as parameter updates: [https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html)
 * Suggested reading: [Moveit Python API Tutorial] Note that because their robot arm configuration is different from ours, this tutorial will not directly help you with this assignment. [https://moveit.picknik.ai/main/doc/examples/motion_planning_python_api/motion_planning_python_api_tutorial.html](https://moveit.picknik.ai/main/doc/examples/motion_planning_python_api/motion_planning_python_api_tutorial.html)
 
 **ROS2 Fundamentals**
@@ -306,7 +305,7 @@ Finally, you need a grasp of some basic robotic arm concepts that are described 
 
 **ROS2 Robot Control and Feedback Interface Investigation**
 Reference: ROS2 CLI tools
-[https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html](https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
+[https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
 
 With the theoretical background dialed in, let us try exposing what interface is available for secondary development ourselves using built in ROS2 CLI tools.
 
@@ -376,7 +375,7 @@ Controlling Arm
 What is this ROS2 datatype called messages?
 
 Suggested reading: Data passing in ROS2: Understanding and defining msg in ROS2
-[https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html)
+[https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html)
 
 Let's do a more in-depth investigation of the topics.
 
