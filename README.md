@@ -28,7 +28,25 @@ We use vim (vi) for text editing in a terminal environment. Please refer to the 
 
 ### Assignment requirement
 
-A hardware video demonstration submission is required for Milestone Assignment 3. You need to demonstrate that you can program a ROS2 program to control the turlebot’s wheels and arms. Once your group is done with the video demonstration, please submit it on Canvas. Each group will submit one video and a zip file with your group name containing your source code. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Rules for robot usage will apply for working with the physical Turtlebot3. Please refer to the inventory list given to you separately.
+A hardware video demonstration submission is required for Milestone Assignment 3. 
+
+You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video.
+
+**[SUBMISSION RULES]**
+
+* **Individual Submission:** **Every team member must submit the video(s) separately to Canvas.** If the video is duplicated within a team, that is acceptable; however, this ensures that only active participants who have access to the team’s recordings can receive credit. 
+
+* **Standardized Hosting:** **To manage file sizes, do not upload raw video files (e.g., MP4) directly to Canvas.** Instead, **upload your videos to YouTube (set as "Unlisted")** and submit the links via a document.
+
+### Video Demo Requirements
+
+Your group will **record** one or more video clips. The estimated total length of the video clips is approximately two and a half minutes. **While you do not need to perform complex editing, please keep the total duration to a few minutes to ensure it remains concise.** One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please show every group member's face and state the names of all group members.
+
+Your recording setup should be organized to show all relevant windows at once: the terminal(s) used for launching nodes, the Gazebo simulation window, and the RViz visualization window.
+
+You do not need to edit the videos, and uploading raw **footage** will suffice. You can split the demonstration into multiple videos **if necessary to show different parts of the requirement.** 
+
+Rules for robot usage will apply for working with the physical Turtlebot3. Please refer to the inventory list given to you separately and the rules for the Robot room usage.
 
 > **Major Changes**
 > * **v 1.0.0:** Initial Release, Added ROS2 control investigation section, overhauled programming guide to help students
@@ -133,7 +151,8 @@ It is highly recommended to debug your code in simulation before running your co
 
 ### Video Demo Requirements (3-4 Minute Demonstration)
 
-Your group will submit a single, continuous screen-recorded video (e.g., MP4 format) that is approximately three to four minutes long. One member must narrate the video, explaining your code and demonstrating your program. Please state the names of all group members at the beginning.
+Please refer to the video submission requirements in the introduction.
+
 Your submission must include two items: the video file and a single .zip file containing all of your source code.
 
 **Part A: Code Walkthrough**
