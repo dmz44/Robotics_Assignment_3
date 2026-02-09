@@ -23,8 +23,6 @@ For all questions regarding milestone assignments and the robot, **you should co
 
 <https://spring2026txstrobot.slack.com/>
 
-We use vim (vi) for text editing in a terminal environment. Please refer to the tutorial for Vim if you are not familiar with vim environment for editing documents. 
-<https://opensource.com/article/19/3/getting-started-vim>
 
 ### Assignment requirement
 
