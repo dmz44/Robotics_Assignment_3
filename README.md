@@ -98,7 +98,27 @@ ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
 
 **Note:** A common reason why physical manipulation of the robot arm fails is that the clock between the NVIDIA Jetson and the Remote PC is not synced. If you suspect this, read the error message on the terminal for bringup to verify.
 
-A simple workaround is to open settings for two machines, go to Date and Time, and set both time zones to CDT (Chicago, United States), and click on the time slider for both machines at the same time so that they are updated (synced) to each other within 1s. The accuracy of time itself does not matter; the timestamps for ROS 2 messages between two machines should be within 1s of each other. Because Jetson does not have a Real-Time Clock battery, you should do this every boot.
+The accuracy of time itself does not matter; the timestamps for ROS 2 messages between two machines should be within 1s of each other.
+
+If you are using the provided laptop, the GUI from Ubuntu settings prevents you from changing the time without sudo. However, you can change it with the timedatectl command on the terminal
+
+```bash
+# View status
+timedatectl
+
+# Change timezone
+#timedatectl set-timezone Region/City
+timedatectl set-timezone America/Chicago
+
+# Enable / Disable NEtwork Time Protocol. This must be disabled for manual time set.
+timedatectl set-ntp true
+timedatectl set-ntp false
+
+# Manually set time
+#timedatectl set-time "YYYY-MM-DD HH:MM:SS"
+timedatectl set-time "2025-02-09 15:30:00
+
+```
 
 ---
 
@@ -106,17 +126,13 @@ A simple workaround is to open settings for two machines, go to Date and Time, a
 
 In part 2 of the assignment, you are going to learn how to program a client teleoperation program in ROS2 to interface with the ROBOTIS Turtlebot 3.
 
-You may find this thread useful in creating command-line interfaces in Python.
-
-[https://python-forum.io/thread-4083.html](https://python-forum.io/thread-4083.html)
-
 You also need to learn how to use ROS 2 to command the turtlebot using your own program. Refer to the Appendix for help regarding this process.
 
 Note that your program is expected to run while `turtlebot3_manipulation_bringup hardware.launch.py` is running on Jetson on the turtlebot.
 
 Your script is expected to run on the Remote PC, but it should not matter if your script runs on turtlebot3’s Jetson or the Remote PC. Again, make sure both machines have synced time within 1s of each other (does not need to be accurate) and are on the same local network.
 
-If you cannot get the clock problem solved, run your code on Jetson as a workaround.
+If you cannot get the clock problem solved, you may run your code on Jetson as a workaround for this assignment while you figure out how to do this for future assignments.
 
 It is highly recommended to debug your code in simulation before running your code on hardware. However, you may not complete the requirement for this assignment on the simulator.
 
@@ -172,7 +188,7 @@ The goal of this part is to explain the design and structure of your program. Wi
 In this part, you will run your program and demonstrate all of its features with the physical robot. It is highly recommended to run your program on SSH from a Remote PC.
 
 * **Launch Program:** From a standard terminal, run your program. Your custom, non-scrolling interface should appear on the screen.
-* **Live Status Display:** As you perform the following actions, point out that the joint angles and gripper status on your terminal display are updating in real-time. Emphasize that the display updates without scrolling new text up the screen.
+* **Live Status Display:** As you perform the following actions, point out that the joint angles and gripper status on your terminal display are updating in real-time. 
 * **Mobile Base Control:** Using the controls you implemented, demonstrate driving the robot smoothly forward, backward, turning left, and turning right.
 * **Manipulator Arm Control:**
 * Demonstrate commanding the arm to move between at least three distinct, predefined positions. You must include a "Home" position and an "Extend Forward" position (as if you were to grab an object directly in front of the robot), plus one more of your own design (e.g., a "Ready" or "Wave" position).
@@ -498,92 +514,6 @@ No. Executing a single Python script is sufficient.
 
 **[Guide] Hints for programming Turtlebot3 Open Manipulator X**
 
-**Hints for Python Imports**
+We decided to give you example code that demonstrates part of the requirement (moving arm to home position, opening and closing the gripper)
 
-```python
-import rclpy
-from rclpy.node import Node
-from rclpy.action import ActionClient
-# Google message names for message definitions
-from geometry_msgs.msg import Twist
-from control_msgs.action import FollowJointTrajectory, GripperCommand
-from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
-from sensor_msgs.msg import JointState
-from builtin_interfaces.msg import Duration
-
-```
-
-**Pseudocode for simple robot procedures**
-
-Note: Some parts of the solution code, such as constructors, are not included here.
-
-```text
-// --- Declaration of Variables ---
-  // For Base Movement
-  DECLARE base_publisher // To send velocity commands
-  DECLARE current_linear_velocity = 0.0
-  DECLARE current_angular_velocity = 0.0
-  DECLARE base_speed_multiplier = 0.05
-  DECLARE base_turn_multiplier = 0.186
-  DECLARE current_position     // Variable to store the latest position (x, y, z).
-  DECLARE current_orientation  // Variable to store the latest orientation (as a quaternion: x,   y, z, w).
-
-  // For Arm and Gripper
-  DECLARE arm_action_client     // To send arm trajectory goals
-  DECLARE gripper_action_client // To send gripper command goals
-  DECLARE joint_state_subscriber // To receive current joint positions
-  DECLARE odom_subscriber       // To receive current XYZ positions
-  DECLARE arm_joint_names = ["joint1", "joint2", "joint3", "joint4"]
-  DECLARE current_arm_angles = [0.0, 0.0, 0.0, 0.0]
-  DECLARE arm_angle_step_size = 5 degrees in radians
-
-  // Sends a movement command to the robot's base.
-  PROCEDURE PublishBaseVelocity()
-  BEGIN
-    CREATE a new 'Twist' message.
-    SET message.linear.x = current_linear_velocity * base_speed_multiplier.
-    SET message.angular.z = current_angular_velocity * base_turn_multiplier.
-    PUBLISH the message using base_publisher.
-  END PROCEDURE
-
-  // Sends a goal to the arm's action server.
-  PROCEDURE SendArmGoal(target_positions, duration)
-  BEGIN
-    CREATE a new 'FollowJointTrajectory' goal message.
-    SET goal.trajectory.joint_names = our arm_joint_names list.
-    CREATE a single trajectory point.
-    SET point.positions = target_positions.
-    SET point.time_from_start = duration.
-    ADD the point to the goal's trajectory.
-    SEND the goal message asynchronously using the arm_action_client.
-  END PROCEDURE
-
-  // Sends a goal to the gripper's action server.
-  PROCEDURE SendGripperGoal(target_position)
-  BEGIN
-    CREATE a new 'GripperCommand' goal message.
-    SET goal.command.position = target_position.
-    SET goal.command.max_effort = 1.0. // A reasonable default force
-    SEND the goal message asynchronously using the gripper_action_client.
-  END PROCEDURE
-
-// Callback function for the joint state subscriber.
-  PROCEDURE JointStateCallback(message)
-  BEGIN
-    // Update our record of the arm's current position
-    FOR each joint_name in our arm_joint_names list:
-      FIND the position of that joint_name in the incoming message.
-      UPDATE the corresponding angle in the current_arm_angles list.
-    END FOR
-  END PROCEDURE
-
-// Callback function for the odom subscriber.
-PROCEDURE OdomCallback(incoming_message)
-  BEGIN
-    SET current_position = incoming_message.pose.pose.position
-    SET current_orientation = incoming_message.pose.pose.orientation
-  END PROCEDURE
-
-```
-
-You would need to find out how you can get the actual code for the programming requirement. It is highly suggested to use and respect async commands to synchronize your code while waiting for certain actions to finish. If you have further questions, please ask via email.
+It is highly suggested to use and respect async commands to synchronize your code while waiting for certain actions to finish. If you have further questions, please ask via email.
