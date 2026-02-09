@@ -178,7 +178,7 @@ The goal of this part is to explain the design and structure of your program. Wi
 * **Base Movement:** The function or code block that creates and publishes relevant messages to the relevant topic.
 * **Arm & Gripper Control:** The code that sends goals to the arm and gripper.
 * **State Subscription:** How are you listening to the relevant topics to receive real-time wheel, arm, and gripper positions?
-* **Terminal UI:** The code you wrote to create the non-scrolling terminal display that continuously updates values in place.
+* **Terminal UI:** The code you wrote to create a terminal display that continuously updates values.
 
 
 
