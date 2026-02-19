@@ -90,11 +90,15 @@ ros2 launch turtlebot3_manipulation_moveit_config moveit_core.launch.py
 
 ```bash
 ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
+```
+```bash
 ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
 
 ```
 
-**Note:** A common reason why physical manipulation of the robot arm fails is that the clock between the NVIDIA Jetson and the Remote PC is not synced. If you suspect this, read the error message on the terminal for bringup to verify.
+**[Optional]** You should not need to do this, as we installed RTC Clock on both Jetson and the laptop.
+
+A common reason why physical manipulation of the robot arm fails is that the clock between the NVIDIA Jetson and the Remote PC is not synced. If you suspect this, read the error message on the terminal for bringup to verify.
 
 The accuracy of time itself does not matter; the timestamps for ROS 2 messages between two machines should be within 1s of each other.
 
@@ -157,7 +161,6 @@ It is highly recommended to debug your code in simulation before running your co
  ---------------------------
  Present Linear Velocity: 0.000, Angular Velocity: 0.000
  Present Arm Joint Angle J1: 0.000 J2: 0.000 J3: 0.000 J4: 0.000
- Present Base Position X: 0.000 Y: 0.000 Z: 0.000
  ---------------------------
 
 ```
