@@ -138,6 +138,16 @@ If you cannot get the clock problem solved, you may run your code on Jetson as a
 
 It is highly recommended to debug your code in simulation before running your code on hardware. However, you may not complete the requirement for this assignment on the simulator.
 
+We are providing you with a sample code to help you get started. We recommend reading the lab guides and appendix if you want to learn how to program using ROS2. 
+
+**[Remote-PC][Jeston]** Make sure both remote-pc and jetson are connected to the same local wifi network, small_blue_wifi.
+
+
+**[Remote-PC]** Download and execute the provided sample code on the Docker shell on the remote pc. Note that because of meta-os nature of ROS2, it does not matter if you execute Python code on Turtlebot's Jetson or Remote-pc. We recommend executing it on remote-pc or on Jetson via ssh on remote-pc for your convenience.
+```bash
+python3 sample_code.py
+```
+
 **Example interface of your program**
 
 ```text
