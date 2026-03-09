@@ -49,7 +49,8 @@ You do not need to edit the videos, and uploading raw **footage** will suffice. 
 Rules for robot usage will apply for working with the physical Turtlebot3. Please refer to the inventory list given to you separately and the rules for the Robot room usage.
 
 > **Major Changes**
-> * **v 1.0.0:** Initial Release, Added ROS2 control investigation section, overhauled programming guide to help students
+> * **v 1.0.5:** Some Changes to the assignment as requested.
+> * **v 1.0.0:** Initial Release.
 
 ---
 
