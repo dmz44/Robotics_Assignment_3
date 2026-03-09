@@ -26,7 +26,9 @@ For all questions regarding milestone assignments and the robot, **you should co
 
 ### Assignment requirement
 
-A hardware video demonstration submission is required for Milestone Assignment 3. 
+**Source Code Submission** is required for Milestone Assignment 3 on Canvas.
+
+In addition, as usual, a **hardware video demonstration submission** is required for Milestone Assignment 3. 
 
 You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video.
 
@@ -38,7 +40,7 @@ You need to demonstrate that you have a working setup and can operate the turtle
 
 ### Video Demo Requirements
 
-Your group will **record** one or more video clips. The estimated total length of the video clips is approximately two and a half minutes. **While you do not need to perform complex editing, please keep the total duration to a few minutes to ensure it remains concise.** One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please show every group member's face and state the names of all group members.
+Your group will **record** one or more video clips. The estimated total length of the video clips is approximately three and a half minutes. **While you do not need to perform complex editing, please keep the total duration to a few minutes to ensure it remains concise.** One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please show every group member's face and state the names of all group members.
 
 Your recording setup should be organized to show all relevant windows at once: the terminal(s) used for launching nodes, the Gazebo simulation window, and the RViz visualization window.
 
@@ -51,42 +53,46 @@ Rules for robot usage will apply for working with the physical Turtlebot3. Pleas
 
 ---
 
-### Part 1: Operation of Physical Turtlebot 3 Arm
+### Part 1: Assignment 2 Revision: Operation of Physical Turtlebot 3 Arm
 
-**Please be safe and note the following warnings.**
+We will do a revision on assignment 2 as part 1 of this assignment. It is always important to verify that hardware for the robot is working properly before you move on to programming on the robot hardware.
 
-> * The manipulator arm on the Turtlebot is strong enough to even lift the Turtlebot itself. Do not command extreme movements that might damage motors on the manipulator arm.
-> * Powering off the OpenCR board will power off and drop the arm instantly. Make sure you hold the arm before powering off the Turtlebot3.
-> * Motor wires on the manipulator arm might interfere with the spinning lidar sensor when commanded to be in a certain position. Take care not to damage the wires on the manipulator arm.
-> * Please be aware of pinching your body between the robot joints. When the Turtlebot3 Manipulation bringup launches, the OpenMANIPULATOR-X will move to the initial pose. It is recommended to set the OpenMANIPULATOR-X in a similar pose as shown in the image below to avoid any physical damage during the initial pose.
-> 
-> 
-
-This manual is based on the following manual for humble.
+This manual is based on the following manual for Humble.
 
 * **(Original URL)** [https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation](https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation)
 
 **Operating Physical Turtlebot 3 Arm**
 
-This assumes that you have a working setup from Milestone Assignment 1 Part 1. Please execute all instructions with **[Remote PC]** on Docker shell. Note that you have to enable GUI and start the Docker container by following instruction from Milestone Assignment 1. Please execute all instructions with **[Turtlebot Nvidia Jetson]** on Turtlebot Jetson's native bash shell without Docker.
+This assumes that you have a working setup from Milestone Assignment 1 Part 1. Please execute all instructions with **[Remote PC]** on the Docker shell. Note that you have to enable the GUI and start the Docker container by following instruction from Milestone Assignment 1. Please execute all instructions with **[Turtlebot Nvidia Jetson]** on Turtlebot Jetson's native bash shell without Docker.
 
-**[Turtlebot Nvidia Jeston]** **[Remote PC]** Make sure Jeston is connected to the small router we provided (small_blue_wifi), along with the remote PC. You should also sync the time for both the remote PC and the NVIDIA Jetson by going through Ubuntu settings. Refer to the end of the instruction for this procedure.
+**[Turtlebot Nvidia Jeston]** **[Remote PC]** Make sure Jeston is connected to the small router we provided (small_blue_wifi), along with the remote PC. 
 
-**[Turtlebot Nvidia Jeston]** The following command will bring up the actual TurtleBot3 hardware with OpenMANIPULATOR-X on it. Open a terminal from the TurtleBot3 SBC. Bring up the TurtleBot3 Manipulation using the following command.
+```
+SSID: small_blue_wifi
+Password: turtlebot
+
+This network does not have internet access.
+
+Your Remote PC does not need sudo to connect to this network because it is a remembered network.
+
+Do not press the reset button on the router just because you have trouble connecting to this network.
+```
+
+**[Turtlebot Nvidia Jeston]** The following command will bring up the actual TurtleBot3 hardware with OpenMANIPULATOR-X on it. Open a terminal from the **TurtleBot3 SBC**. Bring up the TurtleBot3 Manipulation using the following command.
 
 ```bash
 ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
 
 ```
 
-**[Remote PC]** Enter the command below to launch MoveIt on RViz. The arm should move when you move the blue ball on RViz and click “plan and execute”.
+**[Remote PC]** Enter the command below on another Docker shell to launch MoveIt on RViz. The arm should move when you move the blue ball on RViz and click “plan and execute”.
 
 ```bash
 ros2 launch turtlebot3_manipulation_moveit_config moveit_core.launch.py
 
 ```
 
-**[Remote PC]** To operate the robot with the keyboard teleoperation node, the RViz must be terminated. Then launch the servo server node and teleoperation nodes on a separate terminal window.
+**[Remote PC]** To operate the robot with the keyboard teleoperation node, the RViz must be terminated. Then launch the servo server node and teleoperation nodes on a separate docker terminal window.
 
 ```bash
 ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
@@ -96,7 +102,9 @@ ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
 
 ```
 
-**[Optional]** You should not need to do this, as we installed RTC Clock on both Jetson and the laptop.
+**[Optional]** How to set the clock on Remote-PC and Jetson 
+
+You should not need to do this, as we installed a Real Time Clock on both Jetson and the laptop.
 
 A common reason why physical manipulation of the robot arm fails is that the clock between the NVIDIA Jetson and the Remote PC is not synced. If you suspect this, read the error message on the terminal for bringup to verify.
 
@@ -112,7 +120,7 @@ timedatectl
 #timedatectl set-timezone Region/City
 timedatectl set-timezone America/Chicago
 
-# Enable / Disable NEtwork Time Protocol. This must be disabled for manual time set.
+# Enable / Disable Network Time Protocol. This must be disabled for manual time setting.
 timedatectl set-ntp true
 timedatectl set-ntp false
 
@@ -124,29 +132,49 @@ timedatectl set-time "2025-02-09 15:30:00
 
 ---
 
-### Part 2: Programming a Command Line Interface for complete teleoperation of Turtlebot3 with OMX Arm
+### Part 2: Programming a Command Line Interface for custom teleoperation of Turtlebot3 with OMX Arm
 
-In part 2 of the assignment, you are going to learn how to program a client teleoperation program in ROS2 to interface with the ROBOTIS Turtlebot 3.
-
-You also need to learn how to use ROS 2 to command the turtlebot using your own program. Refer to the Appendix for help regarding this process.
-
-Note that your program is expected to run while `turtlebot3_manipulation_bringup hardware.launch.py` is running on Jetson on the turtlebot.
-
-Your script is expected to run on the Remote PC, but it should not matter if your script runs on turtlebot3’s Jetson or the Remote PC. Again, make sure both machines have synced time within 1s of each other (does not need to be accurate) and are on the same local network.
-
-If you cannot get the clock problem solved, you may run your code on Jetson as a workaround for this assignment while you figure out how to do this for future assignments.
-
-It is highly recommended to debug your code in simulation before running your code on hardware. However, you may not complete the requirement for this assignment on the simulator.
+In part 2 of the assignment, you are going to program your own client teleoperation program in ROS2 as a Python script to interface with the ROBOTIS Turtlebot 3.
 
 We are providing you with a sample code to help you get started. We recommend reading the lab guides and appendix if you want to learn how to program using ROS2. 
 
-**[Remote-PC][Jeston]** Make sure both remote-pc and jetson are connected to the same local wifi network, small_blue_wifi.
+**[Remote-PC][Turtlebot_Jeston]** Make sure both remote-pc and jetson are connected to the same local wifi network, small_blue_wifi. 
 
+**[Remote-PC][Turtlebot_Jeston]** Close all programs you have opened for Part 1 of the exercise.
 
-**[Remote-PC]** Download and execute the provided sample code on the Docker shell on the remote pc. Note that because of meta-os nature of ROS2, it does not matter if you execute Python code on Turtlebot's Jetson or Remote-pc. We recommend executing it on remote-pc or on Jetson via ssh on remote-pc for your convenience.
+**[Turtlebot Nvidia Jeston]** The following command will bring up the actual TurtleBot3 hardware with OpenMANIPULATOR-X on it. Open a **Terminal from the TurtleBot3 SBC**. Bring up the TurtleBot3 Manipulation using the following command.
+
 ```bash
+ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
+
+```
+
+**[Remote-PC]** Clone the course Docker repository on the **Terminal shell** on the remote pc. 
+
+```bash
+cd ~/turtlebot_docker
+git clone https://github.com/dmz44/Robotics_Assignment_3.git
+cp Robotics_Assignment_3/sample_code.py my_code/sample_code.py
+```
+
+**[Remote-PC]** Download and execute the provided sample code on the **Docker shell** on the remote pc. 
+
+```bash
+cd ~/my_code
 python3 sample_code.py
 ```
+
+**[Remote-PC]** You can edit your Python script by going to ~/turtlebot_docker/my_code. Changes made within the folder will be reflected inside Docker immediately.
+
+
+**[Remote-PC]** You would modify the sample_code.py to achieve the following requirements. 
+
+* **Interface:** Your custom interface should appear on the screen.
+* **Live Status Display:** As you perform the following actions, show the status of the joint angles and gripper on your terminal display in real-time. 
+* **Mobile Base Control:** Your code should be able to drive the robot smoothly forward, backward, turning left, and turning right.
+* **Manipulator Arm Control Preset:**
+* Demonstrate commanding the arm to move between at least three distinct, predefined positions. You must include a "Extend Forward" and a "Home" position (as if you were to grab an object directly in front of the robot and lift it off the ground), plus one more of your own design (e.g., a "Ready" or "Wave" position).
+* **Gripper Control:** While the arm is in an extended position, demonstrate your program's ability to reliably open and close the gripper on command.
 
 **Example interface of your program**
 
@@ -154,18 +182,21 @@ python3 sample_code.py
 ---------------------------
  Teleoperation Control of TurtleBot3 + OpenManipulatorX
  ---------------------------
+ Base
  w : increase linear velocity
  x : decrease linear velocity
  a : increase angular velocity
  d : decrease angular velocity
  s : base stop
 
+ Gripper
  g : gripper open
  h : gripper close
-           
- 0 : Extend arm forward
+
+ Arm Preset          
+ 0 : Extend Forward
  9 : Home pose
- 8 : Custom pose
+ 8 : Wave pose
            
  q to quit
  ---------------------------
@@ -175,13 +206,17 @@ python3 sample_code.py
 
 ```
 
+**[Optional][Turtlebot Nvidia Jeston]** Note that it does not matter if you execute the sample code on Turtlebot's Jetson or the Remote PC, thanks to ROS2. As an optional exercise, you can try to copy over and execute sample_code on Jetson either with scp or physically with flipbook. 
+
+**[Optional][Remote PC]** The sample code does work on the simulator from assignment 1. This can help you develop while you wait your turn to work on Turtlebot 3. This kind of workflow is called "Digital Twin" and "Sim to Real".
+
 ---
 
 ### Video Demo Requirements (3-4 Minute Demonstration)
 
 Please refer to the video submission requirements in the introduction.
 
-Your submission must include two items: the video file and a single .zip file containing all of your source code.
+Your submission must include two items: **links to the video file and a single .zip file containing all of your source code**.
 
 **Part A: Code Walkthrough**
 The goal of this part is to explain the design and structure of your program. With your source code visible on the screen, you will guide us through the key components.
@@ -191,21 +226,16 @@ The goal of this part is to explain the design and structure of your program. Wi
 * **Base Movement:** The function or code block that creates and publishes relevant messages to the relevant topic.
 * **Arm & Gripper Control:** The code that sends goals to the arm and gripper.
 * **State Subscription:** How are you listening to the relevant topics to receive real-time wheel, arm, and gripper positions?
-* **Terminal UI:** The code you wrote to create a terminal display that continuously updates values.
-
-
 
 **Part B: Live Program Demonstration**
-In this part, you will run your program and demonstrate all of its features with the physical robot. It is highly recommended to run your program on SSH from a Remote PC.
+In this part, you will run your program and demonstrate all of its features with the physical robot. 
 
-* **Launch Program:** From a standard terminal, run your program. Your custom, non-scrolling interface should appear on the screen.
+* **Launch Program:** From a standard terminal, run your program. Your custom interface should appear on the screen.
 * **Live Status Display:** As you perform the following actions, point out that the joint angles and gripper status on your terminal display are updating in real-time. 
 * **Mobile Base Control:** Using the controls you implemented, demonstrate driving the robot smoothly forward, backward, turning left, and turning right.
 * **Manipulator Arm Control:**
 * Demonstrate commanding the arm to move between at least three distinct, predefined positions. You must include a "Home" position and an "Extend Forward" position (as if you were to grab an object directly in front of the robot), plus one more of your own design (e.g., a "Ready" or "Wave" position).
 * Show the arm moving smoothly from one predefined position to the next.
-
-
 * **Gripper Control:** While the arm is in an extended position, demonstrate your program's ability to reliably open and close the gripper on command.
 
 ---
@@ -214,50 +244,7 @@ In this part, you will run your program and demonstrate all of its features with
 
 #### [Guide] ROS2 Programming Guide
 
-**[Optional] Creating a Package for Coding in ROS2**
-
-Suggested Reading: [Create your own package] [https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html)
-
-While not strictly necessary for ROS2 (i.e., you can get away with `python3 yourscript.py`), you might want to create a ROS2 package to follow ROS2 conventions. Navigate to the src directory of your ROS2 workspace and create a new package. For NUC users, you need to create a new ROS2 workspace. Please refer to the suggested reading and initialize your ROS2 workspace first.
-
-This command creates a new directory named `manipulator_control` with the necessary files and folders.
-
-```bash
-ros2 pkg create --build-type ament_python manipulator_control --dependencies rclpy control_msgs open_manipulator_msgs
-
-```
-
-Inside the newly created package, save the code above in a file named `controller_node.py` inside the `manipulator_control/manipulator_control` directory.
-Open the `setup.py` file located in the `manipulator_control` directory. You need to add an `entry_points` section to let ROS2 know about your executable script.
-
-```python
-entry_points={ 'console_scripts': [ 'controller_node = manipulator_control.controller_node:main', ], },
-
-```
-
-Navigate to the root of your workspace and build your package using colcon
-
-```bash
-colcon build --packages-select manipulator_control
-
-```
-
-After the build is complete, source your workspace's setup file to make the new package available in your environment. It is suggested to configure your bashrc with the full path to your workspace so that this is sourced upon every terminal startup.
-
-```bash
-source install/setup.bash
-
-```
-
-Once the robot model is loaded in Gazebo, open another terminal, source your workspace again, and run your controller node
-
-```bash
-# In a second terminal, source and run your node
-cd ~/your_ws
-source install/setup.bash
-ros2 run manipulator_control controller_node
-
-```
+**Contents in the Guide are for your reference, and we do not need you to demonstrate what you have learned in this section**
 
 **Open Manipulator X Arm Control Documentation**
 
@@ -268,27 +255,20 @@ Before we begin, we would like to introduce you to the ROS 1 programming book fr
 The robot arm is a 4-degree-of-freedom (DOF) robot arm, with the end effector or gripper being just a single 1 DOF joint arm.
 
 Recall from milestone assignment 2 that we moved around the arm end effector or directly used joint angles under the joint tab in RViz. Behind the scenes, RViz has been interfacing with the bringup program and Moveit 2 planner to plan and give an intermediate state the robot arm should take in sequence so that the arm does not exceed its physical limits or collide with itself.
+
 A critical concept to go over is inverse kinematics and forward kinematics. These two concepts are used to calculate relevant control commands. Note that the unit for joint angles is in radians and task space control is in m.
 
 In summary, from the documentation, we can deduce that we somehow need to provide either target joint angles or target task space coordinates with pitch, roll, and yaw values to control the arm. Similarly, we should also be able to receive relevant joint information and target task space coordinates through the same pipeline. Recall that in RViz, you can either drag the gripper around in 3D space or command specific joint angles on the Joints tab to command the robot arm movement. This means you have already exploited forward and inverse kinematics to plan and move the robotic arm. Availability of both forward and inverse kinematics is a powerful tool for robot programmers.
+
 To make things simple, our course will focus on control through joint space as illustrated on the forward kinematics diagram.
+
 **[Optional]** While not necessary for the set of assignments we are going to give you, if you are interested in forward kinematics results and utilizing the resulting X Y Z gripper location in your program, create a tf buffer, tf transform listener from ROS tf2 packages and look up the transform between ‘base_link’ and ‘link5’ for the transform between the target frame and source frame.
-
-Figure 13-17 shows the basic structure of ROS1 Moveit. As shown in Figure 13-17, the ‘move_group’ node can exchange commands with the user using ROS 1 actions via JointTrajectoryAction. MoveIt also provides built-in publisher and subscriber, such as Joint States Topic and TF, as well as services that allow users to communicate with the ‘move_group’ node. To support moveit, we use manipulation_bringup to provide relevant information to moveit, which in turn communicates with the turtlebot to move the robotic arm based on its plans. The exact system diagram changed with ROS2, but it allows us to get an idea.
-It is suggested to read more about MoveIt, the planning framework behind the arm control.
-
-Suggested reading: [Moveit Tutorial]
-[https://moveit.picknik.ai/main/index.html](https://moveit.picknik.ai/main/index.html)
-
-**Turtlebot3_manipulation package bringup**
-
-Before controlling the arm named “Open Manipulator X” AND the turtlebot base with any ROS2 program, you need to run the bringup on the Turtlebot3 Single Board Computer, Nvidia Jetson. Bringup acts as a bridge between your ROS2 program and the OpenCR controller board on Turtlebot3.
-Please monitor the bringup terminal for errors or crashes, as they can give you hints on debugging your problem with the open manipulator arm. If you do not get messages such as “You can start planning now” or get intermediate errors while operating the robot arm, please make sure that the issue is resolved. A common problem is clock synchronization between ROS 2 machines, as they need to be within 1s of one another.
 
 **ROS2 Communication Programming**
 
-Largely speaking, there are three interfaces, publisher & subscriber, service & client, and action & action client, that you need to be aware of. Below are links to relevant tutorials. It is highly recommended that you read the tutorials from start to finish to get a comprehensive idea of the ROS2 ecosystem.
+Largely speaking, there are three interfaces, publisher & subscriber, service & client, and action & action client, that you need to be aware of. Below are links to relevant tutorials. It is highly recommended that you read the tutorials to get a comprehensive idea of the ROS2 ecosystem.
 
+References
 * Suggested reading: [Publisher & Subscriber] Getting continuous sensor data or other continuous vehicle command: [https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html)
 * Suggested reading: [Action Server & Client] Commands that take time to complete for Arm and Gripper: [https://docs.ros.org/en/humble/Tutorials/Intermediate/Creating-an-Action.html](https://docs.ros.org/en/humble/Tutorials/Intermediate/Creating-an-Action.html) [https://docs.ros.org/en/humble/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html](https://docs.ros.org/en/humble/Tutorials/Intermediate/Writing-an-Action-Server-Client/Py.html)
 * Suggested reading: [rclpy] ROS Client Library for Python: [https://docs.ros.org/en/iron/p/rclpy/api.html](https://docs.ros.org/en/iron/p/rclpy/api.html)
@@ -298,7 +278,6 @@ Largely speaking, there are three interfaces, publisher & subscriber, service & 
 **ROS2 Fundamentals**
 
 * **Nodes:** You need to build around a class that inherits from Node. A node is the primary building block of a ROS2 system, an executable process that performs a specific task.
-* **[Optional] Building and Sourcing:** If you were to use packages for your ROS2 code, you need to be familiar with the `colcon build` command to compile your package and the `source install/setup.bash` command to make their node's executable available to the ROS2 environment.
 
 **ROS2 Communication Paradigms**
 
@@ -322,27 +301,25 @@ Your code would use three different ways to communicate with the robot’s syste
 * **Asynchronous Calls (async and future):** Instead of blocking the whole program, asynchronous functions immediately return a "future" object. For example, `rclpy.spin_until_future_complete(self, future)` pauses the execution of that function to wait for the result to come back. This is essential for preventing nodes from freezing.
 * **Message Types:** Every ROS2 communication uses a specific message type. You must understand how to import these (from `control_msgs.action` import `FollowJointTrajectory`) and how to create and populate them with data (e.g., creating `JointTrajectoryPoint` and setting its positions).
 
-
-4. **Publishers and Subscribers (for Continuous Data Streams):** This is for continuous, one-way data flow. A publisher node sends messages to a specific topic (like a radio channel). Any number of subscriber nodes can listen to that topic to receive the messages. The publisher doesn't know or care who is listening, and the subscribers don't know who is publishing. This creates a flexible, decoupled system.
+4. **Publishers and Subscribers (for Continuous Data Streams):** This is for continuous, one-way data flow. A publisher node sends messages to a specific topic (like a radio channel). Any number of subscriber nodes can listen to that topic to receive the messages. The publisher doesn't know, or care who is listening, and the subscribers don't know who is publishing. This creates a flexible, decoupled system.
 * **The Callback Function (Event-Driven Programming):** You must understand that they do not call this function directly in their main logic. Instead, the ROS2 framework automatically calls it for them in the background whenever a new message is published to the topic. This is a core principle of event-driven programming. The function's job is to take the incoming message (msg) and do something with it.
 * **"Spinning" to Process Callbacks:** A ROS2 node doesn't process incoming data by default; it must be told to do so. "Spinning" is that process. `spin_once()` tells the node: "Check for any new messages or service requests right now, execute their callbacks, and then return control to my script." We use this when we want to manually process incoming data at specific points in our code. `spin()` would tell the node: "Continuously check for messages and execute callbacks forever until the node is shut down." This is used when a node's only job is to react to events. Without a spin or `spin_once` call, the `joint_state_callback` would never run, and the subscriber would be useless.
 * **Pipeline:** It's perfect for broadcasting sensor data, robot status, or any information that needs to be continuously available to the rest of the system. The robot's hardware drivers are constantly publishing the current state of all joints to the `/joint_states` topic. It is the perfect place to hook into to get real-time position data.
 
+Finally, you need a grasp of some basic robotic arm concepts that are described above, such as joint space. 
 
+**[Guide] ROS2 Robot Control and Feedback Interface Investigation**
 
-Finally, you need a grasp of some basic robotic arm concepts that are described above, such as joint space. It is recommended for you to utilize parallel computing concepts, such as utilizing multiple threads and synchronization, but it should not be necessary for the simple code required for this course.
-
-**ROS2 Robot Control and Feedback Interface Investigation**
 Reference: ROS2 CLI tools
 [https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
 
-With the theoretical background dialed in, let us try exposing what interface is available for secondary development ourselves using built in ROS2 CLI tools.
+With the theoretical background dialed in, let us try exposing what interface is available for secondary development ourselves using built-in ROS2 CLI tools.
 
-The first interface we are going to investigate is the publisher-subscriber interface. ROS 2 breaks complex systems down into many modular nodes. Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages through publisher-subscriber interface.
+The first interface we are going to investigate is the publisher-subscriber interface. ROS 2 breaks complex systems down into many modular nodes. Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages through a publisher-subscriber interface.
 
 Let us try running a rostopic list while running bringup. This could give us some hints on how to interact with the turtlebot.
 
-[Turtlebot Jetson or Remote PC on same network] Run bringup.
+**[Turtlebot Nvidia Jetson]** Run bringup.
 
 ```bash
 ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
@@ -351,16 +328,15 @@ ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
 
 While hardware bringup is running on Jetson on Turtlebot3,
 
-[Turtlebot Jetson or Remote PC on same net] Run the ros2 topic list command on a new terminal
+**[Turtlebot Jetson or Remote PC Docker Shell on same network]** Run the ros2 topic list command on a new terminal
 
 ```bash
 ros2 topic list -t
 
 ```
-
 This should expose available topics in ROS2 and their message type. This command is designed to expose available ROS2 topics and their message type.
 
-It should bring up the following.
+The output should be the following.
 
 ```text
 /arm_controller/joint_trajectory [trajectory_msgs/msg/JointTrajectory]
@@ -384,7 +360,6 @@ If you do not get the full list and just get the following, check if your hardwa
 ```text
 /parameter_events [rcl_interfaces/msg/ParameterEvent]
 /rosout [rcl_interfaces/msg/Log]
-
 ```
 
 We would like you to pay attention to the following topics and message types. We have added some descriptions to make your life easier.
@@ -401,21 +376,21 @@ Getting feedback on joints, including wheels
 Controlling Arm
 `/arm_controller/joint_trajectory` `[trajectory_msgs/msg/JointTrajectory]`
 
-What is this ROS2 datatype called messages?
+You can read the following on what a message is in ROS2. 
 
 Suggested reading: Data passing in ROS2: Understanding and defining msg in ROS2
 [https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html)
 
 Let's do a more in-depth investigation of the topics.
 
-[Turtlebot Jetson or Remote PC on same net] Try ros2 topic echo to get the real-time message status of the topic odom
+**[Turtlebot Nvidia Jetson or Remote PC on same network]** Try ros2 topic echo to get the real-time message status of the topic odom
 
 ```bash
 ros2 topic echo /odom
 
 ```
 
-That should output “echo” of your real-time topic information of topic /odom. This exposes the structure and elements of the messages as well.
+That should output “echo” of your real-time topic information of topic /odom. This exposes the structure and elements of the messages.
 
 ```yaml
 twist:
@@ -436,7 +411,7 @@ twist:
 
 ```
 
-[Turtlebot Jetson or Remote PC on same network] You might find the hz command useful to find the rate at which the data is published.
+**[Turtlebot Nvidia Jetson or Remote PC on same network]**  You might find the hz command useful to find the rate at which the data is published.
 
 ```bash
 ros 2 topic hz /odom
@@ -451,7 +426,7 @@ average rate: 49.833
 
 ```
 
-[Turtlebot Jetson or Remote PC on same network] Try ros2 topic info on topic odom.
+**[Turtlebot Nvidia Jetson or Remote PC on same network]**  Try ros2 topic info on topic odom.
 
 ```bash
 ros2 topic info /odom
@@ -469,7 +444,7 @@ Subscription count: 0
 
 From this, we can see that the topic `/odom` has type `nav_msgs/msg/Odometry`, with 1 publisher active with no subscriber active.
 
-[Turtlebot Jetson or Remote PC on same network] But how about this?
+**[Turtlebot Nvidia Jetson or Remote PC on same network]**  Let us investigate another topic.
 
 ```bash
 ros2 topic info /cmd_vel
@@ -487,9 +462,9 @@ Subscription count: 1
 
 This topic has no publisher but has an active subscriber.
 
-From our short investigation, we can see that bringup from manufacturer Robotis designed topics `/odom` to be a producer of information, and `/cmv_vel` to be a consumer of the information. You can continue the investigation to get a better picture of the overall turtlebot architecture.
+From our short investigation, we can see that bringup from manufacturer Robotis designed topics `/odom` to be a **producer** of information, and `/cmv_vel` to be a **consumer** of the information. You can continue the investigation to get a better picture of the overall turtlebot architecture.
 
-[Turtlebot Jetson or Remote PC on the same network] Lastly, it is highly recommended for you to try out the investigation on other interfaces called services and actions.
+**[Turtlebot Nvidia Jetson or Remote PC on same network]** Lastly, let us investigate the other ROS2 interface called actions.
 
 ```bash
 ros2 action list
@@ -500,31 +475,9 @@ ros2 service type
 
 ```
 
-We would leave you with relevant actions you need to pay attention to.
+We recommend that you try out investigating the following actions on your own. 
 
 Actions
 
 `/arm_controller/follow_joint_trajectory`
 `/gripper_controller/gripper_cmd`
-
-Now, let's move on to how to exploit this information for communication programming.
-
-**FAQ**
-
-**I am getting timeouts on the bringup during arm operations.**
-Please use sleep appropriately to give time for your code to execute in the physical world. Also, try to execute only “valid” (i.e., verified to be executable through other means, such as sim and RViz) pose targets. You can also get timeouts if you are trying to give a pose target that is too close to the current position. Try giving distant targets.
-
-**Can I develop my teleoperation program with my own ROS 2 simulator from assignment 1 and bring it over to hardware?**
-Yes.
-
-**Can I demo my code on the simulator?**
-No.
-
-**Is it necessary for me to create a ROS2 package?**
-No. Executing a single Python script is sufficient.
-
-**[Guide] Hints for programming Turtlebot3 Open Manipulator X**
-
-We decided to give you example code that demonstrates part of the requirement (moving arm to home position, opening and closing the gripper)
-
-It is highly suggested to use and respect async commands to synchronize your code while waiting for certain actions to finish. If you have further questions, please ask via email.
