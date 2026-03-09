@@ -30,7 +30,7 @@ For all questions regarding milestone assignments and the robot, **you should co
 
 In addition, as usual, a **hardware video demonstration submission** is required for Milestone Assignment 3. 
 
-You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video.
+You need to demonstrate that you have a working setup and can operate the turtlebot by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video.
 
 **[SUBMISSION RULES]**
 
@@ -56,7 +56,7 @@ Rules for robot usage will apply for working with the physical Turtlebot3. Pleas
 
 ### Part 1: Assignment 2 Revision: Operation of Physical Turtlebot 3 Arm
 
-We will do a revision on assignment 2 as part 1 of this assignment. It is always important to verify that hardware for the robot is working properly before you move on to programming on the robot hardware.
+We will do a revision on assignment 2 as part 1 of this assignment. It is always important to verify that the hardware for the robot is working properly before you move on to programming the robot hardware.
 
 This manual is based on the following manual for Humble.
 
@@ -86,7 +86,7 @@ ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
 
 ```
 
-**[Remote PC]** Enter the command below on another Docker shell to launch MoveIt on RViz. The arm should move when you move the blue ball on RViz and click “plan and execute”.
+**[Remote PC]** Enter the command below on another Docker shell to launch MoveIt on RViz. The arm should move when you move the blue ball on RViz and click “plan and execute”. We highly recommend noting down some joint angles for the next part of the assignment.
 
 ```bash
 ros2 launch turtlebot3_manipulation_moveit_config moveit_core.launch.py
