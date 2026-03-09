@@ -223,10 +223,11 @@ Your submission must include two items: **links to the video file and a single .
 The goal of this part is to explain the design and structure of your program. With your source code visible on the screen, you will guide us through the key components.
 
 * **High-Level Overview:** Start with a brief architectural explanation. What is the overall structure of your code? (e.g., "We created a single ROS2 node with classes for handling user input, publishing commands, and subscribing to robot state.")
-* **Show Key Functions:** Point to and briefly explain the specific parts of your code that are responsible for:
+
+**Show Key Functions:** Point to and briefly explain the specific parts of your code that are responsible for:
 * **Base Movement:** The function or code block that creates and publishes relevant messages to the relevant topic.
 * **Arm & Gripper Control:** The code that sends goals to the arm and gripper.
-* **State Subscription:** How are you listening to the relevant topics to receive real-time wheel, arm, and gripper positions?
+* **State Subscription:** How are you listening to the relevant topics to receive real-time arm positions?
 
 **Part B: Live Program Demonstration**
 In this part, you will run your program and demonstrate all of its features with the physical robot. 
